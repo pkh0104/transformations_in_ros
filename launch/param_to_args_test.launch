@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <node pkg="transformations_in_ros" type="transform.py" name="test_yaml">
+    <param name="child" type="str" value="camera"/>
+    <param name="parent" type="str" value="lidar"/>
+    <param name="pitch" type="double" value="1.0"/>
+    <param name="yaw"   type="double" value="2.0"/>
+    <param name="roll"  type="double" value="3.0"/>
+    <param name="x" type="double" value="0.1"/>
+    <param name="y" type="double" value="0.2"/>
+    <param name="z" type="double" value="0.3"/>
+  <node/>
+	<rosparam command="load" file="$(find transformations_in_ros)/dump_test.yaml"/>
+	<!--arg name="args_temp" value="/static_transform_args"/-->
+	<node
+		pkg="tf2_ros"
+		type="static_transform_publisher"
+		name="test_param_to_args"
+		output="screen"
+		args="/static_transform_args" />
+</launch>
